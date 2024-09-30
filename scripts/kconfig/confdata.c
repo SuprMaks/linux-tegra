@@ -353,12 +353,12 @@ int conf_read_simple(const char *name, int def)
 	int i, def_flags;
 
 	if (name) {
-		in = zconf_fopen(name);
+		in = zconf_fopen(name, 0, NULL, NULL);
 	} else {
 		char *env;
 
 		name = conf_get_configname();
-		in = zconf_fopen(name);
+		in = zconf_fopen(name, 0, NULL, NULL);
 		if (in)
 			goto load;
 		conf_set_changed(true);
@@ -384,7 +384,7 @@ int conf_read_simple(const char *name, int def)
 
 			*p = '\0';
 
-			in = zconf_fopen(env);
+			in = zconf_fopen(env, 0, NULL, NULL);
 			if (in) {
 				conf_message("using defaults found in %s",
 					     env);
